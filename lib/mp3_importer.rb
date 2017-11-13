@@ -8,7 +8,7 @@ class MP3Importer
     @files = []
   end
 
-  # return an array of all mp3s files in the path
+  # save an array of all mp3s files in the path
   def files
     # fetch the appropriate files
     file_paths = Dir.glob(@path + "/*.mp3")
