@@ -5,16 +5,14 @@ class MP3Importer
 
   def initialize(folder_path)
     @path = folder_path
+    @files = []
   end
 
   # return an array of all mp3s files in the path
   def files
     # fetch the appropriate files
     file_paths = Dir.glob(@path + "/*.mp3")
-    files = []
-    file_paths.map{ |file_paths|
-      files << File.basename(file_path) }
-    files
+    file_paths.map { |file_paths| @files << File.basename(file_path) }
   end
 
   def import
