@@ -19,13 +19,14 @@ class Song
 
     #create the artist if it does not exist
     #song.artist = songsong.artist_name(data[0])
-    song.artist = Artist.find_or_create_by_name(data[0])
+    artist = Artist.find_or_create_by_name(data[0])
 
+    #song is by the artist
+    song.artist = artist
 
     #artist has many songs
     song.artist.add_song(song)
     song.artist.save
-
     song
   end
 end
