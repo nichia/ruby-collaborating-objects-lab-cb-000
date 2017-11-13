@@ -1,3 +1,5 @@
+require 'pry'
+
 class MP3Importer
   attr_accessor :path, :files
 
@@ -5,13 +7,26 @@ class MP3Importer
     @path = folder_path
   end
 
+  # return an array of all mp3s files in the path
   def files
-    basedir = @path
-    @files = Dir.glob("*.mp3")
+    # fetch the appropriate files
+    file_paths = Dir.glob(@path + "/*.mp3")
+    files = []
+    file_paths.map{ |file_paths|
+      files << File.basename(file_path) }
+    files
   end
 
   def import
-    @files.each { |filename| Song.new_by_filename(filename)}
+    self.files.each { |filename| Song.new_by_filename(filename)}
   end
+
+  def import
+      self.files.each do |filename|
+          Song.new_by_filename(filename)
+      end
+  end
+
+
 
 end
