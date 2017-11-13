@@ -7,17 +7,25 @@ class Song
     @name = title
   end
 
-  def artist_name(name)
-    Artist.find_or_create_by_name(name)
-  end
+  #def artist_name(name)
+  #  Artist.find_or_create_by_name(name)
+  #end
 
   def self.new_by_filename(filename)
     data = filename.split(" - ")
+
+    #create the song
     song = self.new(data[1])
-    song.artist = song.artist_name(data[0])
-    song.artist = song.artist_name(filename[0])
+
+    #create the artist if it does not exist
+    #song.artist = songsong.artist_name(data[0])
+    song.artist = Artist.find_or_create_by_name(data[0])
+
+
+    #artist has many songs
     song.artist.add_song(song)
     song.artist.save
+
     song
   end
 end
